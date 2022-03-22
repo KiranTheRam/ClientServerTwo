@@ -15,13 +15,15 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(4999);
-        Date date = new Date();
+        Date date;
 
 //        Loop to keep server running
         while (!serverSocket.isClosed()) {
+            date = new Date();
             System.out.println(new Timestamp(date.getTime()) + " [Server] Server running, waiting for a client to connect");
 //            Accepting client request to connect. Program is halted here until a client connects
             Socket socket = serverSocket.accept();
+            date = new Date();
             System.out.println(new Timestamp(date.getTime()) + " [Server] Client has connected");
 //            Using ClientHandler to spawn a new thread for each client that connects (allowing multiple connections)
             ClientHandler clientThread = new ClientHandler(socket);
