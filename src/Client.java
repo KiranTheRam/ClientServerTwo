@@ -11,7 +11,7 @@ public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket("localhost", 4999);
         Scanner scanner = new Scanner(System.in);
-        Date date = new Date();
+        Date date;
 
 //        In a loop so multiple message can be sent to the server
         while (socket.isConnected()) {
@@ -21,7 +21,7 @@ public class Client {
 //            Send the message captured with scanner
             PrintWriter sending = new PrintWriter(socket.getOutputStream(), true);
             sending.println(messageToBeSent);
-//            sending.flush();
+
 
 //            Receive message from server
             InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
@@ -29,18 +29,11 @@ public class Client {
             String message = bufferedReader.readLine();
 
 //            Handling the closing of the socket
+            date = new Date();
             System.out.println(new Timestamp(date.getTime()) + " " + message);
             if (message.equals("[Server] Socket closed")) {
                 System.exit(1);
             }
-
-//            if (message.equals("[Server] Socket closed")) {
-//                System.out.println(new Timestamp(date.getTime()) + " " + message);
-//                System.exit(1);
-//            }
-//            else {
-//                System.out.println(new Timestamp(date.getTime()) + " " + message);
-//            }
         }
     }
 }
