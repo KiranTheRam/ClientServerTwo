@@ -10,7 +10,7 @@ public class ClientHandler implements Runnable {
     private Socket client;
     private BufferedReader bufferedReader;
     private PrintWriter printWriter;
-    Date date = new Date();
+    Date date;
 
 
     public ClientHandler(Socket client) throws IOException {
@@ -54,6 +54,7 @@ public class ClientHandler implements Runnable {
                 message = bufferedReader.readLine();
 //                If the client sent an exit message we must prompt the server, client, and close everything
                 if (message.equals("exit")) {
+                    date = new Date();
                     System.out.println(new Timestamp(date.getTime()) + " [Server] Connection to client closed");
                     printWriter = new PrintWriter(client.getOutputStream(), true);
                     printWriter.println("[Server] Socket closed");
@@ -70,6 +71,7 @@ public class ClientHandler implements Runnable {
             }
 
 //            Displays client's message in the server
+            date = new Date();
             System.out.println(new Timestamp(date.getTime()) + " [Client]: " + message);
 
         }
