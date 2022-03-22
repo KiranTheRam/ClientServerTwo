@@ -56,7 +56,7 @@ public class ClientHandler implements Runnable {
                 if (message.equals("exit")) {
                     System.out.println(new Timestamp(date.getTime()) + " [Server] Connection to client closed");
                     printWriter = new PrintWriter(client.getOutputStream(), true);
-                    printWriter.println(new Timestamp(date.getTime()) + " [Server] Socket closed");
+                    printWriter.println("[Server] Socket closed");
                     CloseEverything();
                     break;
                 } else {
