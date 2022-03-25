@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class Server {
     private static List<ClientHandler> clients = new ArrayList<>();
     //    Setting max number of clients or threads to 5
-    private static ExecutorService pool = Executors.newFixedThreadPool(5);
+    private static ExecutorService pool = Executors.newFixedThreadPool(2);
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(4999);
